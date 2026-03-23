@@ -7,8 +7,53 @@ body {
   padding: 2rem;
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.5;
+  position: relative;
 }
 
 h1 {
   margin-top: 0;
+}
+
+.main-block,
+.new-block {
+  touch-action: none;
+  user-select: none;
+}
+
+.main-block {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  margin-bottom: 50px;
+}
+
+.new-block {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  cursor: grab;
+}
+
+.blocks-places {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.left-block,
+.right-block {
+  width: 320px;
+  height: 320px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  position: relative;
+}
+
+.left-block {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-auto-rows: 100px;
+  gap: 10px;
+  align-content: start;
 }
