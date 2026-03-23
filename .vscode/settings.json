@@ -1,0 +1,6 @@
+// Отключаем проверки VS Code, жалуется на .lintstagedrc
+// И включаем проверку eslint, чтоб подчеркивал
+{
+  "js/ts.validate.enabled": false,
+  "eslint.enable": true
+}
