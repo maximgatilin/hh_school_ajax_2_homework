@@ -1,5 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Запуск на Node 24, рекомендация от GitHub
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: ['main', 'develop']
