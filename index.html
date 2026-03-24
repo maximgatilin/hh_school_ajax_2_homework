@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лекция 2 — Домашнее задание</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Drag'n'Drop</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Привет, мир!</h1>
-  <p>Откройте консоль браузера (F12), чтобы увидеть вывод из JavaScript.</p>
-
-  <script src="js/main.js"></script>
+    <h1>Drag'n'Drop</h1>
+    <div class="source-area" id="sourceArea">
+        <p>Зона-источник</p>
+        <p>Нажми и тяни</p>
+    </div>
+    <div class="bottom-area">
+        <div class="grid-area">
+            <p class="zone-title">Сетка</p>
+            <div class="grid" id="grid"></div>
+        </div>
+        <div class="free-area">
+            <p class="zone-title">Свободное размещение</p>
+            <div class="free" id="free"></div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
