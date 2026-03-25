@@ -2,46 +2,49 @@ name: Deploy to GitHub Pages
 
 # Запуск на Node 24, рекомендация от GitHub
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
-  push:
-    branches: ['main', 'develop']
+    push:
+        branches: ['main', 'develop']
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
 concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+    group: 'pages'
+    cancel-in-progress: true
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v4
 
-        - name: Setup Node
-          uses: actions/setup-node@v4
-          with:
-              node-version: '20'
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
 
-        - name: Enable Corepack
-          run: corepack enable
+            - name: Enable Corepack
+              run: corepack enable
 
-        - name: Install dependencies
-          run: yarn install --frozen-lockfile
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+            
+            - name: Lint
+              run: yarn lint
 
-        - name: Build
-          run: yarn build
+            - name: Build
+              run: yarn build
 
-        - name: Upload Pages artifact
-          uses: actions/upload-pages-artifact@v4
-          with:
-            path: 'dist'
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: 'dist'
 
     deploy:
         runs-on: ubuntu-latest

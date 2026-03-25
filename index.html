@@ -1,15 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лекция 2 — Домашнее задание</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <h1>Привет, мир!</h1>
-  <p>Откройте консоль браузера (F12), чтобы увидеть вывод из JavaScript.</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Лекция 2 — Домашнее задание</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- Секция Drag&Drop-->
+        <section class="drag-drop">
+            <!-- Зона появления куба -->
+            <div class="drag-drop__initial-zone">
+                <div class="drag-drop__element">Элемент</div>
+            </div>
 
-  <script src="js/main.js"></script>
-</body>
+            <!-- Зоны, куда можно перенести наш кубик -->
+            <div class="drag-drop__drappable-zones">
+                <!-- Сетка -->
+                <div class="drag-drop__grid">
+                    <div class="drag-drop__cell"></div>
+                    <div class="drag-drop__cell"></div>
+                    <div class="drag-drop__cell"></div>
+                    <div class="drag-drop__cell"></div>
+                    <div class="drag-drop__cell"></div>
+                    <div class="drag-drop__cell"></div>
+                </div>
+
+                <!-- Свободное размещение -->
+                <div class="drag-drop__free-droppable"></div>
+            </div>
+        </section>
+        <script src="js/main.js" type="module"></script>
+    </body>
 </html>
