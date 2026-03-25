@@ -1,14 +1,74 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 2rem;
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
+    margin: 0;
+    padding: 2rem;
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    line-height: 1.5;
 }
 
-h1 {
-  margin-top: 0;
+.drag-drop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.drag-drop__initial-zone {
+    display: flex;
+    height: 150px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    border: 2px black solid;
+}
+
+.drag-drop__element {
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    background-color: cornflowerblue;
+    border: 2px black solid;
+    cursor: grab;
+}
+
+.drag-drop__drappable-zones {
+    width: fit-content;
+    display: flex;
+    gap: 40px;
+}
+
+.drag-drop__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 300px;
+    width: 400px;
+    background-color: lightgrey;
+    border: 2px black solid;
+}
+
+.drag-drop__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag-drop__free-droppable {
+    display: inline-flex;
+    height: 300px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    border: 2px black solid;
+    position: relative;
 }

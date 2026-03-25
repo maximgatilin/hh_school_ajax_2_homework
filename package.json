@@ -1,0 +1,23 @@
+{
+  "name": "hh_school_ajax_2_homework",
+  "packageManager": "yarn@4.10.3",
+  "devDependencies": {
+    "@eslint/js": "9.39.0",
+    "eslint": "9.39.0",
+    "gh-pages": "6.3.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.4.0",
+    "prettier": "3.8.1",
+    "vite": "8.0.2"
+  },
+  "scripts": {
+    "postinstall": "husky install .husky",
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build",
+    "deploy": "yarn build && gh-pages -d dist",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
+}
