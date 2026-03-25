@@ -1,8 +1,8 @@
 class DragAndDrop {
     constructor() {
         this.sourceArea = document.getElementById('sourceArea');
-        this.gridArea = document.getElementById('grid');
-        this.freeArea = document.getElementById('free');
+        this.gridArea = document.getElementById('gridArea');
+        this.freeArea = document.getElementById('freeArea');
         this.grid = document.getElementById('grid');
         this.free = document.getElementById('free');
         this.isDragging = false;
@@ -69,19 +69,15 @@ class DragAndDrop {
     }
 
     highlightZone(zone) {
-        const gridContainer = document.querySelector('.grid-area');
-        const freeContainer = document.querySelector('.free-area');
-        gridContainer.classList.remove('zone-highlight');
-        freeContainer.classList.remove('zone-highlight');
-        if (zone === 'grid') gridContainer.classList.add('zone-highlight');
-        if (zone === 'free') freeContainer.classList.add('zone-highlight');
+        this.gridArea.classList.remove('zone-highlight');
+        this.freeArea.classList.remove('zone-highlight');
+        if (zone === 'grid') this.gridArea.classList.add('zone-highlight');
+        if (zone === 'free') this.freeArea.classList.add('zone-highlight');
     }
 
     clearHighlight() {
-        const gridContainer = document.querySelector('.grid-area');
-        const freeContainer = document.querySelector('.free-area');
-        gridContainer.classList.remove('zone-highlight');
-        freeContainer.classList.remove('zone-highlight');
+        this.gridArea.classList.remove('zone-highlight');
+        this.freeArea.classList.remove('zone-highlight');
     }
 
     onMouseDown(event) {
@@ -182,8 +178,8 @@ class DragAndDrop {
         this.sourceArea.addEventListener('touchstart', this.onTouchStart.bind(this));
         document.addEventListener('dragstart', (event) => event.preventDefault());
     }
-    
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     new DragAndDrop();
 });
