@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лекция 2 — Домашнее задание</title>
+  <title>Drag'n'Drop</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <h1>Привет, мир!</h1>
-  <p>Откройте консоль браузера (F12), чтобы увидеть вывод из JavaScript.</p>
+
+  <div class="toolbar">
+    <div class="source" id="source">+ Новый элемент</div>
+    <button class="btn-clear" id="clearAll">🗑 Очистить</button>
+  </div>
+
+  <div class="zones">
+    <div class="zone zone--grid" id="gridZone">
+      <div class="zone__title">Сетка</div>
+      <div class="zone__content" id="gridContent"></div>
+    </div>
+    <div class="zone zone--free" id="freeZone">
+      <div class="zone__title">Свободное размещение</div>
+      <div class="zone__content" id="freeContent"></div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
+
 </html>
