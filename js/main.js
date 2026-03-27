@@ -45,7 +45,7 @@ function isInsideZone(square, zone) {
   const overlapArea = overlapWidth * overlapHeight;
   const squareArea = s.width * s.height;
 
-  return overlapArea / squareArea >= 0.6;
+  return overlapArea / squareArea >= 1;
 }
 
 function clearZoneHighlight() {
