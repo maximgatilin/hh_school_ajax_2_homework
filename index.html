@@ -2,14 +2,24 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лекция 2 — Домашнее задание</title>
+  <title>Drag'n'Drop</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Привет, мир!</h1>
-  <p>Откройте консоль браузера (F12), чтобы увидеть вывод из JavaScript.</p>
-
-  <script src="js/main.js"></script>
+<div class="zones">
+  <div class="zone" id="zoneSource">
+    <div class="zone-header">Источник</div>
+    <div id="sourcePad">+ тяни чтобы создать</div>
+  </div>
+  <div class="zone" id="zoneGrid">
+    <div class="zone-header">Сетка</div>
+    <div class="drop-area grid-area" id="gridArea"></div>
+  </div>
+  <div class="zone" id="zoneFree">
+    <div class="zone-header">Свободная</div>
+    <div class="drop-area" id="freeArea"></div>
+  </div>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>
