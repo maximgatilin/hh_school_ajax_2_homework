@@ -1,4 +1,5 @@
-export function getRandomColor() {
+"use strict";
+function getRandomColor() {
   const letters = "0123456789ABCDEF";
   let color = "#";
 
@@ -9,7 +10,7 @@ export function getRandomColor() {
   return color;
 }
 
-export function getPoint(event) {
+function getPoint(event) {
   if (event.touches && event.touches.length > 0) {
     return {
       x: event.touches[0].clientX,
@@ -30,7 +31,7 @@ export function getPoint(event) {
   };
 }
 
-export function isInside(point, zone) {
+function isInside(point, zone) {
   const rect = zone.getBoundingClientRect();
 
   return (
@@ -41,6 +42,6 @@ export function isInside(point, zone) {
   );
 }
 
-export function clamp(value, min, max) {
+function clamp(value, min, max) {
   return Math.max(min, Math.min(value, max));
 }

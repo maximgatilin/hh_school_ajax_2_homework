@@ -1,7 +1,5 @@
 "use strict";
 
-import { getRandomColor, getPoint, isInside, clamp } from "./utils.js";
-
 const source = document.querySelector(".source");
 const gridZone = document.querySelector(".target-grid");
 const freeZone = document.querySelector(".target-free");
