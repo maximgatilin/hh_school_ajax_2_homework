@@ -1,15 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лекция 2 — Домашнее задание</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <h1>Привет, мир!</h1>
-  <p>Откройте консоль браузера (F12), чтобы увидеть вывод из JavaScript.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лекция 2 — Домашнее задание</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="source">Здесь берем элемент</div>
 
-  <script src="js/main.js"></script>
-</body>
+      <section class="target-container">
+        <div class="target-grid">
+          <span class="zone-title">Тут размещаем по сетке</span>
+        </div>
+
+        <div class="target-free">
+          <span class="zone-title">Тут размещаем свободно</span>
+        </div>
+      </section>
+    </main>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
