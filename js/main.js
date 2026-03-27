@@ -1,52 +1,88 @@
 let drag = null;
 
-document.getElementById('sourcePad').addEventListener('mousedown', e => {
-  if (e.button !== 0) return;
-  e.preventDefault();
+function getEventCoords(e) {
+  if (e.touches) {
+    return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
+  }
+  return { clientX: e.clientX, clientY: e.clientY };
+}
 
+function getEventTarget(e) {
+  if (e.touches) {
+    return e.touches[0].target;
+  }
+  return e.target;
+}
+
+function getLastCoords(e) {
+  if (e.changedTouches) {
+    return { clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY };
+  }
+  return { clientX: e.clientX, clientY: e.clientY };
+}
+
+function createDraggableElement() {
   const elem = document.createElement('div');
   elem.className = 'element dragging';
   elem.style.backgroundColor = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
-  document.body.appendChild(elem);
+  return elem;
+}
 
-  drag = { elem, offsetX: 50, offsetY: 50 };
-  positionElem(e.clientX, e.clientY);
-});
+function startDrag(elem, clientX, clientY, offsetX, offsetY) {
+  drag = { elem, offsetX, offsetY };
+  positionElem(clientX, clientY);
+}
 
-document.addEventListener('mousedown', e => {
-  if (e.button !== 0) return;
-  if (!e.target.classList.contains('element')) return;
-  if (e.target.classList.contains('dragging')) return;
+function handleDragStart(e, isNewElement = false, offsetX = 50, offsetY = 50) {
   e.preventDefault();
+  const coords = getEventCoords(e);
 
-  const elem = e.target;
-  const rect = elem.getBoundingClientRect();
+  let elem;
+  if (isNewElement) {
+    elem = createDraggableElement();
+    document.body.appendChild(elem);
+    startDrag(elem, coords.clientX, coords.clientY, offsetX, offsetY);
+  } else {
+    const target = getEventTarget(e);
+    if (!target.classList.contains('element') || target.classList.contains('dragging')) return;
+    const rect = target.getBoundingClientRect();
+    elem = target;
+    elem.remove();
+    elem.classList.add('dragging');
+    document.body.appendChild(elem);
+    startDrag(elem, coords.clientX, coords.clientY, coords.clientX - rect.left, coords.clientY - rect.top);
+  }
+}
 
-  elem.remove();
-  elem.classList.add('dragging');
-  document.body.appendChild(elem);
-
-  drag = { elem, offsetX: e.clientX - rect.left, offsetY: e.clientY - rect.top };
-  positionElem(e.clientX, e.clientY);
-});
-
-document.addEventListener('mousemove', e => {
+function handleDragMove(e) {
   if (!drag) return;
-  positionElem(e.clientX, e.clientY);
-  updateHighlight(e.clientX, e.clientY);
-});
+  e.preventDefault();
+  const coords = getEventCoords(e);
+  positionElem(coords.clientX, coords.clientY);
+  updateHighlight(coords.clientX, coords.clientY);
+}
 
-document.addEventListener('mouseup', e => {
+function handleDragEnd(e) {
   if (!drag) return;
-
   const { elem, offsetX, offsetY } = drag;
   drag = null;
-
   document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
   elem.classList.remove('dragging');
+  const coords = getLastCoords(e);
+  if (!tryDrop(elem, coords.clientX, coords.clientY, offsetX, offsetY)) elem.remove();
+}
 
-  if (!tryDrop(elem, e.clientX, e.clientY, offsetX, offsetY)) elem.remove();
-});
+document.getElementById('sourcePad').addEventListener('mousedown', e => handleDragStart(e, true));
+document.getElementById('sourcePad').addEventListener('touchstart', e => handleDragStart(e, true));
+
+document.addEventListener('mousedown', e => handleDragStart(e, false));
+document.addEventListener('touchstart', e => handleDragStart(e, false));
+
+document.addEventListener('mousemove', handleDragMove);
+document.addEventListener('touchmove', handleDragMove);
+
+document.addEventListener('mouseup', handleDragEnd);
+document.addEventListener('touchend', handleDragEnd);
 
 function positionElem(mouseX, mouseY) {
   drag.elem.style.left = mouseX - drag.offsetX + 'px';
